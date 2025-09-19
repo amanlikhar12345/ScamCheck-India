@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamCheck India - Stay Safe Online</title>
+    <!-- FAVICON ADDED HERE -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%23ff6b35%22 d=%22M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80A48 48 0 0 0 0 127.9v176c0 133.7 131.2 216.5 241.4 252.3a48.28 48.28 0 0 0 29.2 0C380.8 520.4 512 437.6 512 303.9v-176a48 48 0 0 0-45.5-44.2zM256 448c-54.3 0-98.3-44.5-98.3-99.2s44-99.2 98.3-99.2 98.3 44.5 98.3 99.2-44 99.2-98.3 99.2z%22/%3E</svg>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7931e;
+            --accent-color: #004d7a;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-custom {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary-custom {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .scam-feed {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+        }
+
+        .scam-item {
+            background: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .scam-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 2px solid #dee2e6;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .score-display {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .btn-custom {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showSection('home')">
+                <i class="fas fa-shield-alt"></i> ScamCheck India
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('report')">Report Scam</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('game')">Training Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('education')">Safety Tips</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home-section" class="section">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Stay Safe from Scams</h1>
+                    <p class="hero-subtitle">Report suspicious messages, learn to identify scams, and protect yourself online</p>
+                    <div class="mt-4">
+                        <button class="btn btn-primary-custom btn-custom" onclick="showSection('report')">
+                            <i class="fas fa-exclamation-triangle"></i> Report a Scam
+                        </button>
+                        <button class="btn btn-secondary-custom btn-custom" onclick="showSection('game')">
+                            <i class="fas fa-gamepad"></i> Play Training Game
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding" style="background: rgba(255, 255, 255, 0.1);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-flag feature-icon"></i>
+                            <h3>Report Scams</h3>
+                            <p>Anonymously report suspicious messages and help protect your community from fraud.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-brain feature-icon"></i>
+                            <h3>Learn & Train</h3>
+                            <p>Practice identifying scams with our interactive training game and improve your awareness.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h3>Community Driven</h3>
+                            <p>Join thousands of Indians working together to create a safer digital environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Scam Feed -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="scam-feed">
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-rss text-warning"></i> Latest Scam Reports
+                    </h2>
+                    <div id="scam-feed-container">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Report Scam Section -->
+    <div id="report-section" class="section hidden">
+        <section class="section-padding" style="padding-top: 120px;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="form-container fade-in">
+                            <h2 class="text-center mb-4">
+                                <i class="fas fa-exclamation-triangle text-warning"></i> Report a Suspicious Message
+                            </h2>
+                            <p class="text-center text-muted mb-4">Help protect others by reporting suspicious messages you've received. Your report is completely anonymous.</p>
+                            
+                            <form id="scam-report-form">
+                                <div class="mb-3">
+                                    <label for="scam-category" class="form-label">
+                                        <i class="fas fa-tags"></i> Scam Category
+                                    </label>
+                                    <select class="form-control" id="scam-category" required>
+                                        <option value="">Select a category</option>
+                                        <option value="kyc">KYC/Bank Account Verification</option>
+                                        <option value="job">Fake Job Offers</option>
+                                        <option value="lottery">Lottery/Prize Scams</option>
+                                        <option value="investment">Investment Scams</option>
+                                        <option value="romance">Romance Scams</option>
+                                        <option value="tech-support">Tech Support Scams</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="scam-message" class="form-label">
+                                        <i class="fas fa-comment-alt"></i> Suspicious Message Content
+                                    </label>
+                                    <textarea class="form-control" id="scam-message" rows="6" 
+                                              placeholder="Paste the suspicious message here..." required></textarea>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-custom" style="background: var(--danger-color); color: white; border-radius: 50px; padding: 15px 40px;">
+                                        <i class="fas fa-paper-plane"></i> Submit Report Anonymously
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Training Game Section -->
+    <div id="game-section" class="section hidden">
+        <section class="section-padding" style="padding-top: 120px;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="game-container fade-in">
+                            <h2 class="mb-4">
+                                <i class="fas fa-gamepad text-primary"></i> Scam Detection Training
+                            </h2>
+                            
+                            <div id="game-start" class="text-center">
+                                <p class="lead">Test your ability to identify scams! Read each message carefully and decide if it's a scam or safe.</p>
+                                <button class="btn btn-custom pulse" style="background: var(--success-color); color: white;" onclick="startGame()">
+                                    <i class="fas fa-play"></i> Start Training
+                                </button>
+                            </div>
+
+                            <div id="game-play" class="hidden">
+                                <div class="score-display">
+                                    Score: <span id="score">0</span>/10 | Question: <span id="question-num">1</span>/10
+                                </div>
+                                
+                                <div class="game-card" id="game-message">
+                                    <!-- Game message will appear here -->
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <button class="btn btn-custom me-3" style="background: var(--danger-color); color: white;" onclick="makeChoice('scam')">
+                                        <i class="fas fa-times"></i> This is a SCAM
+                                    </button>
+                                    <button class="btn btn-custom" style="background: var(--success-color); color: white;" onclick="makeChoice('safe')">
+                                        <i class="fas fa-check"></i> This is SAFE
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="game-result" class="hidden text-center">
+                                <h3 id="final-score"></h3>
+                                <p id="performance-message"></p>
+                                <button class="btn btn-custom" style="background: var(--accent-color); color: white;" onclick="restartGame()">
+                                    <i class="fas fa-redo"></i> Play Again
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Education Section -->
+    <div id="education-section" class="section hidden">
+        <section class="section-padding" style="padding-top: 120px;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="form-container fade-in">
+                            <h2 class="text-center mb-5">
+                                <i class="fas fa-graduation-cap text-info"></i> Stay Safe Online - Essential Tips
+                            </h2>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-card">
+                                        <i class="fas fa-eye text-warning feature-icon"></i>
+                                        <h4>Red Flags to Watch For</h4>
+                                        <ul class="text-start">
+                                            <li>Urgent action required immediately</li>
+                                            <li>Requests for personal information</li>
+                                            <li>Poor grammar and spelling</li>
+                                            <li>Too-good-to-be-true offers</li>
+                                            <li>Suspicious links or attachments</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-card">
+                                        <i class="fas fa-shield-alt text-success feature-icon"></i>
+                                        <h4>Protection Strategies</h4>
+                                        <ul class="text-start">
+                                            <li>Verify sender identity independently</li>
+                                            <li>Never share OTP or passwords</li>
+                                            <li>Contact banks directly for verification</li>
+                                            <li>Be skeptical of unsolicited messages</li>
+                                            <li>Report suspicious activity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-card">
+                                        <i class="fas fa-phone text-info feature-icon"></i>
+                                        <h4>Emergency Contacts</h4>
+                                        <ul class="text-start">
+                                            <li>Cyber Crime Helpline: 1930</li>
+                                            <li>National Helpline: 155260</li>
+                                            <li>Your Bank's Customer Care</li>
+                                            <li>Local Police Cyber Cell</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-card">
+                                        <i class="fas fa-lightbulb text-warning feature-icon"></i>
+                                        <h4>Quick Safety Tips</h4>
+                                        <ul class="text-start">
+                                            <li>When in doubt, don't click or respond</li>
+                                            <li>Banks never ask for details via SMS</li>
+                                            <li>Verify job offers through official channels</li>
+                                            <li>Be cautious with social media links</li>
+                                            <li>Trust your instincts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark-color); color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5><i class="fas fa-shield-alt"></i> ScamCheck India</h5>
+                    <p>Empowering Indians to stay safe in the digital world</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <hr class="my-3" style="border-color: rgba(255, 255, 255, 0.3);">
+                    <p>&copy; 2025 ScamCheck India. Made with ❤️ for a safer digital India.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample scam data for demonstration
+        const sampleScams = [
+            {
+                category: "KYC",
+                message: "Your bank account will be blocked. Update KYC immediately: bit.ly/urgent-kyc-123",
+                timestamp: "2 hours ago",
+                danger: "high"
+            },
+            {
+                category: "Job Offer",
+                message: "Congratulations! You're selected for work from home job. Earn ₹50,000/month. Contact WhatsApp: 9876543210",
+                timestamp: "5 hours ago",
+                danger: "medium"
+            },
+            {
+                category: "Lottery",
+                message: "WINNER! You've won ₹25 Lakh in Jio lottery. Claim now with processing fee of ₹500.",
+                timestamp: "1 day ago",
+                danger: "high"
+            },
+            {
+                category: "Investment",
+                message: "Double your money in 30 days! Guaranteed returns. Investment starts from ₹5000 only.",
+                timestamp: "2 days ago",
+                danger: "high"
+            }
+        ];
+
+        // Training game data
+        const gameQuestions = [
+            {
+                message: "Dear customer, your account will be suspended. Click here to verify: https://secure-bank-verify.com",
+                isScam: true,
+                explanation: "This is a scam! Banks never ask for verification through suspicious links."
+            },
+            {
+                message: "Your OTP for transaction is 123456. Valid for 10 minutes. Do not share with anyone.",
+                isScam: false,
+                explanation: "This is legitimate! Real OTP messages remind you not to share the code."
+            },
+            {
+                message: "Congratulations! You've won ₹50,000 in lucky draw. Pay ₹500 processing fee to claim.",
+                isScam: true,
+                explanation: "This is a scam! Legitimate prizes never require processing fees."
+            },
+            {
+                message: "Your electricity bill is due tomorrow. Pay online at: www.officialelectricityboard.gov.in",
+                isScam: false,
+                explanation: "This appears legitimate with an official government domain."
+            },
+            {
+                message: "URGENT: Complete your PAN card verification or face legal action. Click: pan-verify-now.com",
+                isScam: true,
+                explanation: "This is a scam! Government agencies don't use unofficial domains or threaten immediate legal action."
+            },
+            {
+                message: "Your train ticket PNR 1234567890 is confirmed. Journey date: 15-Dec. Have a safe trip!",
+                isScam: false,
+                explanation: "This is legitimate! Standard railway confirmation with specific details."
+            },
+            {
+                message: "Work from home opportunity! Earn ₹2000 daily. No experience needed. Contact immediately.",
+                isScam: true,
+                explanation: "This is likely a scam! Legitimate jobs don't promise unrealistic daily earnings."
+            },
+            {
+                message: "Dear customer, your SBI ATM card is temporarily blocked. Visit nearest branch with ID proof.",
+                isScam: false,
+                explanation: "This could be legitimate if it directs you to visit a branch instead of clicking links."
+            },
+            {
+                message: "You have received ₹25,000 cash back in your account. Check balance: click here now!",
+                isScam: true,
+                explanation: "This is a scam! Banks don't send unsolicited cashback notifications with suspicious links."
+            },
+            {
+                message: "Your mobile recharge of ₹299 is successful. Balance: ₹298.50. Thank you for choosing Airtel.",
+                isScam: false,
+                explanation: "This appears legitimate with specific transaction details and remaining balance."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let gameActive = false;
+
+        // Navigation functionality
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            
+            // Add fade-in animation
+            document.getElementById(sectionName + '-section').classList.add('fade-in');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize the page
+        function initializePage() {
+            loadScamFeed();
+            setupFormHandler();
+        }
+
+        // Load sample scam feed
+        function loadScamFeed() {
+            const container = document.getElementById('scam-feed-container');
+            container.innerHTML = '';
+            
+            sampleScams.forEach((scam, index) => {
+                const dangerClass = scam.danger === 'high' ? 'danger' : 'warning';
+                const scamItem = document.createElement('div');
+                scamItem.className = `scam-item border-${dangerClass}`;
+                scamItem.style.borderLeftColor = `var(--${dangerClass}-color)`;
+                
+                scamItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="text-${dangerClass} mb-2">
+                                <i class="fas fa-exclamation-triangle"></i> ${scam.category} Scam Alert
+                            </h6>
+                            <p class="mb-1">"${scam.message.substring(0, 100)}${scam.message.length > 100 ? '...' : ''}"</p>
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> Reported ${scam.timestamp}
+                            </small>
+                        </div>
+                        <span class="badge bg-${dangerClass}">${scam.danger.toUpperCase()}</span>
+                    </div>
+                `;
+                
+                container.appendChild(scamItem);
+                
+                // Add animation delay
+                setTimeout(() => {
+                    scamItem.style.opacity = '1';
+                    scamItem.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+        }
+
+        // Form submission handler
+        function setupFormHandler() {
+            document.getElementById('scam-report-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const category = document.getElementById('scam-category').value;
+                const message = document.getElementById('scam-message').value;
+                
+                if (category && message.trim()) {
+                    // Simulate successful submission
+                    alert('✅ Thank you! Your report has been submitted successfully and will help protect others.');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Add to live feed
+                    addToScamFeed(category, message);
+                }
+            });
+        }
+
+        // Add new scam to feed
+        function addToScamFeed(category, message) {
+            const newScam = {
+                category: category.toUpperCase(),
+                message: message,
+                timestamp: "Just now",
+                danger: "high"
+            };
+            
+            sampleScams.unshift(newScam);
+            loadScamFeed();
+        }
+
+        // Game functionality
+        function startGame() {
+            currentQuestion = 0;
+            score = 0;
+            gameActive = true;
+            
+            document.getElementById('game-start').classList.add('hidden');
+            document.getElementById('game-play').classList.remove('hidden');
+            document.getElementById('game-result').classList.add('hidden');
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestion < gameQuestions.length) {
+                const question = gameQuestions[currentQuestion];
+                document.getElementById('game-message').textContent = question.message;
+                document.getElementById('question-num').textContent = currentQuestion + 1;
+                document.getElementById('score').textContent = score;
+            } else {
+                endGame();
+            }
+        }
+
+        function makeChoice(choice) {
+            if (!gameActive) return;
+            
+            const question = gameQuestions[currentQuestion];
+            const isCorrect = (choice === 'scam' && question.isScam) || (choice === 'safe' && !question.isScam);
+            
+            if (isCorrect) {
+                score++;
+                showFeedback('✅ Correct!', question.explanation, 'success');
+            } else {
+                showFeedback('❌ Incorrect', question.explanation, 'danger');
+            }
+            
+            currentQuestion++;
+            
+            setTimeout(() => {
+                if (currentQuestion < gameQuestions.length) {
+                    showQuestion();
+                } else {
+                    endGame();
+                }
+            }, 3000);
+        }
+
+        function showFeedback(title, explanation, type) {
+            const messageDiv = document.getElementById('game-message');
+            messageDiv.innerHTML = `
+                <div class="alert alert-${type} mb-3">
+                    <h5>${title}</h5>
+                    <p class="mb-0">${explanation}</p>
+                </div>
+            `;
+        }
+
+        function endGame() {
+            gameActive = false;
+            document.getElementById('game-play').classList.add('hidden');
+            document.getElementById('game-result').classList.remove('hidden');
+            
+            const percentage = (score / gameQuestions.length) * 100;
+            let message = '';
+            
+            if (percentage >= 80) {
+                message = '🏆 Excellent! You have great scam detection skills!';
+            } else if (percentage >= 60) {
+                message = '👍 Good job! Keep practicing to improve your skills.';
+            } else {
+                message = '📚 Keep learning! Review the safety tips to improve your awareness.';
+            }
+            
+            document.getElementById('final-score').textContent = `Final Score: ${score}/${gameQuestions.length} (${Math.round(percentage)}%)`;
+            document.getElementById('performance-message').textContent = message;
+        }
+
+        function restartGame() {
+            document.getElementById('game-result').classList.add('hidden');
+            document.getElementById('game-start').classList.remove('hidden');
+        }
+
+        // Smooth scrolling for better UX
+        function smoothScroll() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            
+            // Add some interactive animations
+            setInterval(() => {
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach((card, index) => {
+                    if (Math.random() > 0.95) {
+                        card.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            card.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                });
+            }, 5000);
+        });
+
+        // Add floating animation to hero buttons
+        setInterval(() => {
+            const heroButtons = document.querySelectorAll('.hero-section .btn-custom');
+            heroButtons.forEach(button => {
+                if (Math.random() > 0.7) {
+                    button.classList.add('pulse');
+                    setTimeout(() => {
+                        button.classList.remove('pulse');
+                    }, 2000);
+                }
+            });
+        }, 8000);
+
+        // Dynamic background color changes
+        let colorIndex = 0;
+        const backgroundColors = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+        ];
+
+        setInterval(() => {
+            if (document.getElementById('home-section').classList.contains('hidden')) return;
+            
+            colorIndex = (colorIndex + 1) % backgroundColors.length;
+            document.body.style.background = backgroundColors[colorIndex];
+        }, 15000);
+
+        // Add interactive hover effects to scam items
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest('.scam-item')) {
+                e.target.closest('.scam-item').style.backgroundColor = '#fff3cd';
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest('.scam-item')) {
+                e.target.closest('.scam-item').style.backgroundColor = '#f8f9fa';
+            }
+        });
+
+        // Mobile-friendly touch interactions
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', e => {
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
+            
+            // Swipe up to refresh scam feed
+            if (diff > 50 && document.getElementById('home-section').classList.contains('hidden') === false) {
+                loadScamFeed();
+                
+                // Show refresh feedback
+                const container = document.getElementById('scam-feed-container');
+                const refreshDiv = document.createElement('div');
+                refreshDiv.className = 'alert alert-info text-center';
+                refreshDiv.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Refreshing feed...';
+                container.insertBefore(refreshDiv, container.firstChild);
+                
+                setTimeout(() => {
+                    refreshDiv.remove();
+                }, 1500);
+            }
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect on page load
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            const originalText = heroTitle.textContent;
+            typeWriter(heroTitle, originalText, 80);
+        });
+
+        // Add progress indicator for form
+        document.getElementById('scam-message').addEventListener('input', function() {
+            const length = this.value.length;
+            const button = document.querySelector('#scam-report-form button[type="submit"]');
+            
+            if (length > 20) {
+                button.style.background = 'var(--success-color)';
+                button.innerHTML = '<i class="fas fa-check"></i> Ready to Submit';
+            } else {
+                button.style.background = 'var(--danger-color)';
+                button.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Report Anonymously';
+            }
+        });
+
+        // Add sound feedback for game (using Web Audio API)
+        function playSound(type) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                if (type === 'correct') {
+                    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+                } else {
+                    oscillator.frequency.setValueAtTime(311.13, audioContext.currentTime); // D#4
+                    oscillator.frequency.setValueAtTime(233.08, audioContext.currentTime + 0.1); // A#3
+                }
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (e) {
+                // Fallback: no sound if Web Audio API is not supported
+            }
+        }
+
+        // Enhanced makeChoice function with sound
+        function makeChoiceWithSound(choice) {
+            if (!gameActive) return;
+            
+            const question = gameQuestions[currentQuestion];
+            const isCorrect = (choice === 'scam' && question.isScam) || (choice === 'safe' && !question.isScam);
+            
+            // Play sound feedback
+            playSound(isCorrect ? 'correct' : 'incorrect');
+            
+            if (isCorrect) {
+                score++;
+                showFeedback('✅ Correct!', question.explanation, 'success');
+            } else {
+                showFeedback('❌ Incorrect', question.explanation, 'danger');
+            }
+            
+            currentQuestion++;
+            
+            setTimeout(() => {
+                if (currentQuestion < gameQuestions.length) {
+                    showQuestion();
+                } else {
+                    endGame();
+                }
+            }, 3000);
+        }
+
+        // Update game buttons to use sound
+        document.addEventListener('DOMContentLoaded', function() {
+            // Override the onclick handlers with sound-enabled versions
+            setTimeout(() => {
+                const scamButton = document.querySelector('button[onclick="makeChoice(\'scam\')"]');
+                const safeButton = document.querySelector('button[onclick="makeChoice(\'safe\')"]');
+                
+                if (scamButton) {
+                    scamButton.setAttribute('onclick', 'makeChoiceWithSound(\'scam\')');
+                }
+                if (safeButton) {
+                    safeButton.setAttribute('onclick', 'makeChoiceWithSound(\'safe\')');
+                }
+            }, 100);
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (gameActive && document.getElementById('game-play').classList.contains('hidden') === false) {
+                if (e.key === 'ArrowLeft' || e.key === '1') {
+                    makeChoiceWithSound('scam');
+                } else if (e.key === 'ArrowRight' || e.key === '2') {
+                    makeChoiceWithSound('safe');
+                }
+            }
+            
+            // Navigation shortcuts
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        showSection('home');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        showSection('report');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        showSection('game');
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        showSection('education');
+                        break;
+                }
+            }
+        });
+
+        // Add loading states and animations
+        function addLoadingState(buttonElement) {
+            const originalHTML = buttonElement.innerHTML;
+            buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            buttonElement.disabled = true;
+            
+            setTimeout(() => {
+                buttonElement.innerHTML = originalHTML;
+                buttonElement.disabled = false;
+            }, 2000);
+        }
+
+        // Enhanced form submission with loading state
+        document.getElementById('scam-report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            addLoadingState(submitButton);
+            
+            const category = document.getElementById('scam-category').value;
+            const message = document.getElementById('scam-message').value;
+            
+            if (category && message.trim()) {
+                setTimeout(() => {
+                    alert('✅ Thank you! Your report has been submitted successfully and will help protect others.');
+                    this.reset();
+                    addToScamFeed(category, message);
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
